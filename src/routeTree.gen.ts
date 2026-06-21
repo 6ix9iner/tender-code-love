@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedInsightsRouteImport } from './routes/_authenticated/insights'
 import { Route as AuthenticatedGraphRouteImport } from './routes/_authenticated/graph'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedNotesIndexRouteImport } from './routes/_authenticated/notes.index'
@@ -31,6 +32,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedInsightsRoute = AuthenticatedInsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedGraphRoute = AuthenticatedGraphRouteImport.update({
   id: '/graph',
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/graph': typeof AuthenticatedGraphRoute
+  '/insights': typeof AuthenticatedInsightsRoute
   '/notes/$noteId': typeof AuthenticatedNotesNoteIdRoute
   '/notes/new': typeof AuthenticatedNotesNewRoute
   '/notes/': typeof AuthenticatedNotesIndexRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/graph': typeof AuthenticatedGraphRoute
+  '/insights': typeof AuthenticatedInsightsRoute
   '/notes/$noteId': typeof AuthenticatedNotesNoteIdRoute
   '/notes/new': typeof AuthenticatedNotesNewRoute
   '/notes': typeof AuthenticatedNotesIndexRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/graph': typeof AuthenticatedGraphRoute
+  '/_authenticated/insights': typeof AuthenticatedInsightsRoute
   '/_authenticated/notes/$noteId': typeof AuthenticatedNotesNoteIdRoute
   '/_authenticated/notes/new': typeof AuthenticatedNotesNewRoute
   '/_authenticated/notes/': typeof AuthenticatedNotesIndexRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard'
     | '/graph'
+    | '/insights'
     | '/notes/$noteId'
     | '/notes/new'
     | '/notes/'
@@ -104,6 +114,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard'
     | '/graph'
+    | '/insights'
     | '/notes/$noteId'
     | '/notes/new'
     | '/notes'
@@ -114,6 +125,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/_authenticated/dashboard'
     | '/_authenticated/graph'
+    | '/_authenticated/insights'
     | '/_authenticated/notes/$noteId'
     | '/_authenticated/notes/new'
     | '/_authenticated/notes/'
@@ -147,6 +159,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/insights': {
+      id: '/_authenticated/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof AuthenticatedInsightsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/graph': {
       id: '/_authenticated/graph'
@@ -189,6 +208,7 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedGraphRoute: typeof AuthenticatedGraphRoute
+  AuthenticatedInsightsRoute: typeof AuthenticatedInsightsRoute
   AuthenticatedNotesNoteIdRoute: typeof AuthenticatedNotesNoteIdRoute
   AuthenticatedNotesNewRoute: typeof AuthenticatedNotesNewRoute
   AuthenticatedNotesIndexRoute: typeof AuthenticatedNotesIndexRoute
@@ -197,6 +217,7 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedGraphRoute: AuthenticatedGraphRoute,
+  AuthenticatedInsightsRoute: AuthenticatedInsightsRoute,
   AuthenticatedNotesNoteIdRoute: AuthenticatedNotesNoteIdRoute,
   AuthenticatedNotesNewRoute: AuthenticatedNotesNewRoute,
   AuthenticatedNotesIndexRoute: AuthenticatedNotesIndexRoute,
