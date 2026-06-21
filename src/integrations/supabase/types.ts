@@ -170,6 +170,7 @@ export type Database = {
           created_at: string
           id: string
           last_viewed_at: string | null
+          search_tsv: unknown
           summary: string | null
           title: string
           updated_at: string
@@ -181,6 +182,7 @@ export type Database = {
           created_at?: string
           id?: string
           last_viewed_at?: string | null
+          search_tsv?: unknown
           summary?: string | null
           title?: string
           updated_at?: string
@@ -192,6 +194,7 @@ export type Database = {
           created_at?: string
           id?: string
           last_viewed_at?: string | null
+          search_tsv?: unknown
           summary?: string | null
           title?: string
           updated_at?: string
