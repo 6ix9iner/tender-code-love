@@ -16,7 +16,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "@tanstack/react-router";
 
 const items = [
-  { title: "Dashboard", url: "/", icon: Home },
+  { title: "Dashboard", url: "/dashboard", icon: Home },
   { title: "Notes", url: "/notes", icon: FileText },
   { title: "Knowledge graph", url: "/graph", icon: Network },
   { title: "Insights", url: "/insights", icon: Sparkles },
